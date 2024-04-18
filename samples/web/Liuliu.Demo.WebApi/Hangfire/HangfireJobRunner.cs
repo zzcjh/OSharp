@@ -35,8 +35,8 @@ namespace Liuliu.Demo.Web.Hangfire
             BackgroundJob.Enqueue<UserManager<User>>(m => m.FindByIdAsync("1"));
             string jobId = BackgroundJob.Schedule<UserManager<User>>(m => m.FindByIdAsync("2"), TimeSpan.FromMinutes(2));
             BackgroundJob.ContinueJobWith<TestHangfireJob>(jobId, m => m.GetUserCount());
-            RecurringJob.AddOrUpdate<TestHangfireJob>(m => m.GetUserCount(), Cron.Minutely, TimeZoneInfo.Local);
-            RecurringJob.AddOrUpdate<TestHangfireJob>(m => m.LockUser2(), Cron.Minutely, TimeZoneInfo.Local);
+            RecurringJob.AddOrUpdate<TestHangfireJob>("TestHangfireJob.GetUserCount", m => m.GetUserCount(), Cron.Minutely);
+            RecurringJob.AddOrUpdate<TestHangfireJob>("TestHangfireJob.LockUser2", m => m.LockUser2(), Cron.Minutely);
         }
     }
 
@@ -70,18 +70,20 @@ namespace Liuliu.Demo.Web.Hangfire
         {
             List<string> list = new List<string>();
             UserManager<User> userManager = _provider.GetRequiredService<UserManager<User>>();
-            User user2 = await userManager.FindByIdAsync("2");
-            list.Add($"user2.IsLocked: {user2.IsLocked}");
-            user2.IsLocked = !user2.IsLocked;
-            await userManager.UpdateAsync(user2);
-            IUnitOfWork unitOfWork = _provider.GetUnitOfWork(true);
-#if NET5_0_OR_GREATER
-            await unitOfWork.CommitAsync();
-#else
-            unitOfWork.Commit();
-#endif
+            User? user2 = await userManager.FindByIdAsync("2");
+            if (user2 != null)
+            {
+                list.Add($"user2.IsLocked: {user2.IsLocked}");
+                user2.IsLocked = !user2.IsLocked;
+                await userManager.UpdateAsync(user2);
+                IUnitOfWork unitOfWork = _provider.GetUnitOfWork(true);
+                await unitOfWork.CommitAsync();
+            }
             user2 = await userManager.FindByIdAsync("2");
-            list.Add($"user2.IsLocked: {user2.IsLocked}");
+            if (user2 != null)
+            {
+                list.Add($"user2.IsLocked: {user2.IsLocked}");
+            }
             return list.ExpandAndToString();
         }
     }

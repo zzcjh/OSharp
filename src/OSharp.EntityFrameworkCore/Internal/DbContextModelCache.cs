@@ -1,70 +1,64 @@
-// -----------------------------------------------------------------------
-//  <copyright file="DbContextModelCache.cs" company="OSharp¿ªÔ´ÍÅ¶Ó">
+ï»¿// -----------------------------------------------------------------------
+//  <copyright file="DbContextModelCache.cs" company="OSharpå¼€æºå›¢é˜Ÿ">
 //      Copyright (c) 2014-2018 OSharp. All rights reserved.
 //  </copyright>
 //  <site>http://www.osharp.org</site>
-//  <last-editor>¹ùÃ÷·æ</last-editor>
+//  <last-editor>éƒ­æ˜é”‹</last-editor>
 //  <last-date>2018-08-12 14:14</last-date>
 // -----------------------------------------------------------------------
 
-using System;
 using System.Collections.Concurrent;
-
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 using OSharp.Extensions;
 
 
-namespace OSharp.Entity.Internal
+namespace OSharp.Entity.Internal;
+
+/// <summary>
+/// ä¸Šä¸‹æ–‡æ•°æ®æ¨¡å‹ç¼“å­˜
+/// </summary>
+internal class DbContextModelCache
 {
+    private readonly ConcurrentDictionary<Type, IModel> _dict = new ConcurrentDictionary<Type, IModel>();
+    private readonly ILogger _logger;
+
     /// <summary>
-    /// ÉÏÏÂÎÄÊı¾İÄ£ĞÍ»º´æ
+    /// åˆå§‹åŒ–ä¸€ä¸ª<see cref="DbContextModelCache"/>ç±»å‹çš„æ–°å®ä¾‹
     /// </summary>
-    internal class DbContextModelCache
+    public DbContextModelCache(IServiceProvider provider)
     {
-        private readonly ConcurrentDictionary<Type, IModel> _dict = new ConcurrentDictionary<Type, IModel>();
-        private readonly ILogger _logger;
+        _logger = provider.GetLogger(GetType());
+    }
 
-        /// <summary>
-        /// ³õÊ¼»¯Ò»¸ö<see cref="DbContextModelCache"/>ÀàĞÍµÄĞÂÊµÀı
-        /// </summary>
-        public DbContextModelCache(IServiceProvider provider)
-        {
-            _logger = provider.GetLogger(GetType());
-        }
+    /// <summary>
+    /// è·å–æŒ‡å®šä¸Šä¸‹æ–‡ç±»å‹çš„æ¨¡å‹
+    /// </summary>
+    /// <param name="dbContextType">ä¸Šä¸‹æ–‡ç±»å‹</param>
+    /// <returns>æ•°æ®æ¨¡å‹</returns>
+    public IModel Get(Type dbContextType)
+    {
+        IModel model = _dict.GetOrDefault(dbContextType);
+        _logger.LogDebug($"ä» DbContextModelCache ä¸­è·å–æ•°æ®ä¸Šä¸‹æ–‡ {dbContextType} çš„Modelç¼“å­˜ï¼Œç»“æœï¼š{model != null}");
+        return model;
+    }
 
-        /// <summary>
-        /// »ñÈ¡Ö¸¶¨ÉÏÏÂÎÄÀàĞÍµÄÄ£ĞÍ
-        /// </summary>
-        /// <param name="dbContextType">ÉÏÏÂÎÄÀàĞÍ</param>
-        /// <returns>Êı¾İÄ£ĞÍ</returns>
-        public IModel Get(Type dbContextType)
-        {
-            IModel model = _dict.GetOrDefault(dbContextType);
-            _logger.LogDebug($"´Ó DbContextModelCache ÖĞ»ñÈ¡Êı¾İÉÏÏÂÎÄ {dbContextType} µÄModel»º´æ£¬½á¹û£º{model != null}");
-            return model;
-        }
+    /// <summary>
+    /// è®¾ç½®æŒ‡å®šä¸Šä¸‹æ–‡ç±»å‹çš„æ¨¡å‹
+    /// </summary>
+    /// <param name="dbContextType">ä¸Šä¸‹æ–‡ç±»å‹</param>
+    /// <param name="model">æ¨¡å‹</param>
+    public void Set(Type dbContextType, IModel model)
+    {
+        _logger.LogDebug($"åœ¨ DbContextModelCache ä¸­å­˜å…¥æ•°æ®ä¸Šä¸‹æ–‡ {dbContextType} çš„Modelç¼“å­˜");
+        _dict[dbContextType] = model;
+    }
 
-        /// <summary>
-        /// ÉèÖÃÖ¸¶¨ÉÏÏÂÎÄÀàĞÍµÄÄ£ĞÍ
-        /// </summary>
-        /// <param name="dbContextType">ÉÏÏÂÎÄÀàĞÍ</param>
-        /// <param name="model">Ä£ĞÍ</param>
-        public void Set(Type dbContextType, IModel model)
-        {
-            _logger.LogDebug($"ÔÚ DbContextModelCache ÖĞ´æÈëÊı¾İÉÏÏÂÎÄ {dbContextType} µÄModel»º´æ");
-            _dict[dbContextType] = model;
-        }
-
-        /// <summary>
-        /// ÒÆ³ıÖ¸¶¨ÉÏÏÂÎÄÀàĞÍµÄÄ£ĞÍ
-        /// </summary>
-        public void Remove(Type dbContextType)
-        {
-            _logger.LogDebug($"´Ó DbContextModelCache ÖĞÒÆ³ıÊı¾İÉÏÏÂÎÄ {dbContextType} µÄModel»º´æ");
-            _dict.TryRemove(dbContextType, out IModel model);
-        }
+    /// <summary>
+    /// ç§»é™¤æŒ‡å®šä¸Šä¸‹æ–‡ç±»å‹çš„æ¨¡å‹
+    /// </summary>
+    public void Remove(Type dbContextType)
+    {
+        _logger.LogDebug($"ä» DbContextModelCache ä¸­ç§»é™¤æ•°æ®ä¸Šä¸‹æ–‡ {dbContextType} çš„Modelç¼“å­˜");
+        _dict.TryRemove(dbContextType, out IModel model);
     }
 }

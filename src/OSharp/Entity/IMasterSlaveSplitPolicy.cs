@@ -1,4 +1,4 @@
-﻿// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 //  <copyright file="IMasterSlaveSplitPolicy.cs" company="OSharp开源团队">
 //      Copyright (c) 2014-2021 OSharp. All rights reserved.
 //  </copyright>
@@ -7,21 +7,17 @@
 //  <last-date>2021-03-21 12:34</last-date>
 // -----------------------------------------------------------------------
 
-using OSharp.Core.Options;
+namespace OSharp.Entity;
 
-
-namespace OSharp.Entity
+/// <summary>
+/// 定义数据库主从分离策略
+/// </summary>
+public interface IMasterSlaveSplitPolicy
 {
     /// <summary>
-    /// 定义数据库主从分离策略
+    /// 是否前往从数据库
     /// </summary>
-    public interface IMasterSlaveSplitPolicy
-    {
-        /// <summary>
-        /// 是否前往从数据库
-        /// </summary>
-        /// <param name="options">数据上下文选项</param>
-        /// <returns></returns>
-        bool IsToSlaveDatabase(OsharpDbContextOptions options);
-    }
+    /// <param name="options">数据上下文选项</param>
+    /// <returns></returns>
+    bool IsToSlaveDatabase(OsharpDbContextOptions options);
 }

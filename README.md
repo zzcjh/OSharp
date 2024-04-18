@@ -1,7 +1,8 @@
 # OSharp Framework
 
 [![Member project of .NET Core Community](https://img.shields.io/badge/member%20project%20of-NCC-9e20c9.svg)](https://github.com/dotnetcore)
-[![depoly action](https://github.com/dotnetcore/OSharp/workflows/CI/badge.svg)](https://github.com/dotnetcore/OSharp/actions?query=workflow%3A%22CI%22)
+[![depoly action](https://img.shields.io/github/actions/workflow/status/dotnetcore/osharp/ci.yml
+)](https://github.com/dotnetcore/osharp/actions/workflows/ci.yml)
 [![NuGet Badge](https://buildstats.info/nuget/osharp.core)](https://www.nuget.org/packages/osharpns/)
 [![GitHub license](https://img.shields.io/badge/license-Apache%202-blue.svg)](https://raw.githubusercontent.com/i66soft/osharp-ns20/master/LICENSE)
 
@@ -19,13 +20,20 @@
 
 ## <span id="01">OSharp 简介</span>
 
-OSharp 全称 OSharp Framework with .NetStandard2.x，是一个基于.NetStandard2.x 开发的一个.NetCore 快速开发框架。这个框架使用最新稳定版的.NetCore SDK（当前是.NET Core 3.1），对 AspNetCore 的配置、依赖注入、日志、缓存、实体框架、Mvc(WebApi)、身份认证、权限授权等模块进行更高一级的自动化封装，并规范了一套业务实现的代码结构与操作流程，使 .Net Core 框架更易于应用到实际项目开发中。
+OSharp是一个基于.Net6.0+开发的一个.Net快速开发框架。这个框架使用最新稳定版的.Net SDK（当前是.NET 6.0），对 AspNetCore 的配置、依赖注入、日志、缓存、实体框架、Mvc(WebApi)、身份认证、权限授权等模块进行更高一级的自动化封装，并规范了一套业务实现的代码结构与操作流程，使 .Net Core 框架更易于应用到实际项目开发中。
 
-相关示例项目：
+### 项目地址
+-   Github: [https://github.com/dotnetcore/osharp](https://github.com/dotnetcore/osharp)
+-   Gitee(镜像): [https://gitee.com/i66soft/osharp](https://gitee.com/i66soft/osharp)
 
--   Vue 版本(vben): [https://github.com/zionLZH/osharp-vben-admin](https://github.com/zionLZH/osharp-vben-admin)
+
+### 相关示例项目：
+
+-   Vue 版本(vben): 
+    -   [https://github.com/zionLZH/osharp-vben-admin](https://github.com/zionLZH/osharp-vben-admin)
+    -   [https://github.com/gmf520/osharp-vben-template](https://github.com/gmf520/osharp-vben-template)
 -   Mvc 版本(layui): [https://github.com/gmf520/osharp-layui](https://github.com/gmf520/osharp-layui)
--   Angular 版本(ng-alain): [https://github.com/dotnetcore/osharp/tree/master/samples/web/ui-clients/ng-alain8](https://github.com/dotnetcore/osharp/tree/master/samples/web/ui-clients/ng-alain8)
+-   Angular 版本(ng-alain): [https://github.com/dotnetcore/osharp/tree/releases/net6/samples/web/ui-clients/ng-alain8](https://github.com/dotnetcore/osharp/tree/releases/net6/samples/web/ui-clients/ng-alain8)
 
 ### 框架组件组织
 
@@ -60,6 +68,7 @@ OSharp 全称 OSharp Framework with .NetStandard2.x，是一个基于.NetStandar
 
 |包名称|稳定版本|预览版本|下载数|
 |----|----|----|----|
+|[OSharp.Utils](https://www.nuget.org/packages/OSharp.Utils/)|[![OSharp.Utils](https://img.shields.io/nuget/v/OSharp.Utils.svg)](https://www.nuget.org/packages/OSharp.Utils/)|[![OSharp.Utils](https://img.shields.io/nuget/vpre/OSharp.Utils.svg)](https://www.nuget.org/packages/OSharp.Utils/)|[![OSharp.Utils](https://img.shields.io/nuget/dt/OSharp.Utils.svg)](https://www.nuget.org/packages/OSharp.Utils/)|
 |[OSharp.Core](https://www.nuget.org/packages/OSharp.Core/)|[![OSharp.Core](https://img.shields.io/nuget/v/OSharp.Core.svg)](https://www.nuget.org/packages/OSharp.Core/)|[![OSharp.Core](https://img.shields.io/nuget/vpre/OSharp.Core.svg)](https://www.nuget.org/packages/OSharp.Core/)|[![OSharp.Core](https://img.shields.io/nuget/dt/OSharp.Core.svg)](https://www.nuget.org/packages/OSharp.Core/)|
 |[OSharp.AspNetCore](https://www.nuget.org/packages/OSharp.AspNetCore/)|[![OSharp.AspNetCore](https://img.shields.io/nuget/v/OSharp.AspNetCore.svg)](https://www.nuget.org/packages/OSharp.AspNetCore/)|[![OSharp.AspNetCore](https://img.shields.io/nuget/vpre/OSharp.AspNetCore.svg)](https://www.nuget.org/packages/OSharp.AspNetCore/)|[![OSharp.AspNetCore](https://img.shields.io/nuget/dt/OSharp.AspNetCore.svg)](https://www.nuget.org/packages/OSharp.AspNetCore/)|
 |[OSharp.Authorization.Datas](https://www.nuget.org/packages/OSharp.Authorization.Datas/)|[![OSharp.Authorization.Datas](https://img.shields.io/nuget/v/OSharp.Authorization.Datas.svg)](https://www.nuget.org/packages/OSharp.Authorization.Datas/)|[![OSharp.Authorization.Datas](https://img.shields.io/nuget/vpre/OSharp.Authorization.Datas.svg)](https://www.nuget.org/packages/OSharp.Authorization.Datas/)|[![OSharp.Authorization.Datas](https://img.shields.io/nuget/dt/OSharp.Authorization.Datas.svg)](https://www.nuget.org/packages/OSharp.Authorization.Datas/)|
@@ -72,8 +81,6 @@ OSharp 全称 OSharp Framework with .NetStandard2.x，是一个基于.NetStandar
 |[OSharp.EntityFrameworkCore.PostgreSql](https://www.nuget.org/packages/OSharp.EntityFrameworkCore.PostgreSql/)|[![OSharp.EntityFrameworkCore.PostgreSql](https://img.shields.io/nuget/v/OSharp.EntityFrameworkCore.PostgreSql.svg)](https://www.nuget.org/packages/OSharp.EntityFrameworkCore.PostgreSql/)|[![OSharp.EntityFrameworkCore.PostgreSql](https://img.shields.io/nuget/vpre/OSharp.EntityFrameworkCore.PostgreSql.svg)](https://www.nuget.org/packages/OSharp.EntityFrameworkCore.PostgreSql/)|[![OSharp.EntityFrameworkCore.PostgreSql](https://img.shields.io/nuget/dt/OSharp.EntityFrameworkCore.PostgreSql.svg)](https://www.nuget.org/packages/OSharp.EntityFrameworkCore.PostgreSql/)|
 |[OSharp.Hangfire](https://www.nuget.org/packages/OSharp.Hangfire/)|[![OSharp.Hangfire](https://img.shields.io/nuget/v/OSharp.Hangfire.svg)](https://www.nuget.org/packages/OSharp.Hangfire/)|[![OSharp.Hangfire](https://img.shields.io/nuget/vpre/OSharp.Hangfire.svg)](https://www.nuget.org/packages/OSharp.Hangfire/)|[![OSharp.Hangfire](https://img.shields.io/nuget/dt/OSharp.Hangfire.svg)](https://www.nuget.org/packages/OSharp.Hangfire/)||[OSharp.Identity](https://www.nuget.org/packages/OSharp.Identity/)|[![OSharp.Identity](https://img.shields.io/nuget/v/OSharp.Identity.svg)](https://www.nuget.org/packages/OSharp.Identity/)|
 |[OSharp.Identity](https://www.nuget.org/packages/OSharp.Identity/)|[![OSharp.Identity](https://img.shields.io/nuget/v/OSharp.Identity.svg)](https://www.nuget.org/packages/OSharp.Identity/)|[![OSharp.Identity](https://img.shields.io/nuget/vpre/OSharp.Identity.svg)](https://www.nuget.org/packages/OSharp.Identity/)|[![OSharp.Identity](https://img.shields.io/nuget/dt/OSharp.Identity.svg)](https://www.nuget.org/packages/OSharp.Identity/)|
-|[OSharp.IdentityServer](https://www.nuget.org/packages/OSharp.IdentityServer/)|[![OSharp.IdentityServer](https://img.shields.io/nuget/v/OSharp.IdentityServer.svg)](https://www.nuget.org/packages/OSharp.IdentityServer/)|[![OSharp.IdentityServer](https://img.shields.io/nuget/vpre/OSharp.IdentityServer.svg)](https://www.nuget.org/packages/OSharp.IdentityServer/)|[![OSharp.IdentityServer](https://img.shields.io/nuget/dt/OSharp.IdentityServer.svg)](https://www.nuget.org/packages/OSharp.IdentityServer/)|
-|[OSharp.IdentityServer.EntityConfiguration](https://www.nuget.org/packages/OSharp.IdentityServer.EntityConfiguration/)|[![OSharp.IdentityServer.EntityConfiguration](https://img.shields.io/nuget/v/OSharp.IdentityServer.EntityConfiguration.svg)](https://www.nuget.org/packages/OSharp.IdentityServer.EntityConfiguration/)|[![OSharp.IdentityServer.EntityConfiguration](https://img.shields.io/nuget/vpre/OSharp.IdentityServer.EntityConfiguration.svg)](https://www.nuget.org/packages/OSharp.IdentityServer.EntityConfiguration/)|[![OSharp.IdentityServer.EntityConfiguration](https://img.shields.io/nuget/dt/OSharp.IdentityServer.EntityConfiguration.svg)](https://www.nuget.org/packages/OSharp.IdentityServer.EntityConfiguration/)|
 |[OSharp.Log4Net](https://www.nuget.org/packages/OSharp.Log4Net/)|[![OSharp.Log4Net](https://img.shields.io/nuget/v/OSharp.Log4Net.svg)](https://www.nuget.org/packages/OSharp.Log4Net/)|[![OSharp.Log4Net](https://img.shields.io/nuget/vpre/OSharp.Log4Net.svg)](https://www.nuget.org/packages/OSharp.Log4Net/)|[![OSharp.Log4Net](https://img.shields.io/nuget/dt/OSharp.Log4Net.svg)](https://www.nuget.org/packages/OSharp.Log4Net/)|
 |[OSharp.MiniProfiler](https://www.nuget.org/packages/OSharp.MiniProfiler/)|[![OSharp.MiniProfiler](https://img.shields.io/nuget/v/OSharp.MiniProfiler.svg)](https://www.nuget.org/packages/OSharp.MiniProfiler/)|[![OSharp.MiniProfiler](https://img.shields.io/nuget/vpre/OSharp.MiniProfiler.svg)](https://www.nuget.org/packages/OSharp.MiniProfiler/)|[![OSharp.MiniProfiler](https://img.shields.io/nuget/dt/OSharp.MiniProfiler.svg)](https://www.nuget.org/packages/OSharp.MiniProfiler/)|
 |[OSharp.Redis](https://www.nuget.org/packages/OSharp.Redis/)|[![OSharp.Redis](https://img.shields.io/nuget/v/OSharp.Redis.svg)](https://www.nuget.org/packages/OSharp.Redis/)|[![OSharp.Redis](https://img.shields.io/nuget/vpre/OSharp.Redis.svg)](https://www.nuget.org/packages/OSharp.Redis/)|[![OSharp.Redis](https://img.shields.io/nuget/dt/OSharp.Redis.svg)](https://www.nuget.org/packages/OSharp.Redis/)|
@@ -318,3 +325,7 @@ OSharp 当前版本（6.0.0）使用了 `.net` 当前最新版本 `6.0.0`，所�
     -   [x] OSharp.Authorization.Datas
         -   [x] 实现`角色-实体`，`用户-实体`的数据权限配置
         -   [x] 实现`角色-实体`，`用户-实体`的数据权限过滤
+
+## 感谢
+[![](https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31)](https://dotnet.microsoft.com/zh-cn/)
+[![JetBrains Resharper](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/resharper/)

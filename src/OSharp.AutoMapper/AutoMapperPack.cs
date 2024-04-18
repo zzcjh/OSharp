@@ -7,20 +7,6 @@
 //  <last-date>2018-06-23 15:23</last-date>
 // -----------------------------------------------------------------------
 
-using System;
-using System.ComponentModel;
-using System.Linq;
-
-using AutoMapper;
-using AutoMapper.Configuration;
-
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Logging;
-
-using OSharp.Core.Packs;
-using OSharp.Mapping;
-
 using IMapper = OSharp.Mapping.IMapper;
 
 
@@ -69,9 +55,10 @@ namespace OSharp.AutoMapper
             }
 
             var configuration = new MapperConfiguration(cfg);
+            configuration.CompileMappings();
             IMapper mapper = new AutoMapperMapper(configuration);
             MapperExtensions.SetMapper(mapper);
-            logger.LogInformation($"初始化对象映射对象到 MapperExtensions：{mapper.GetType()}，共包含 {configuration.GetMappers().Count()} 个映射配对");
+            logger.LogInformation($"初始化对象映射对象到 MapperExtensions：{mapper.GetType()}");
             
             IsEnabled = true;
         }
